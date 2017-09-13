@@ -1,0 +1,72 @@
+% !TEX root = 99_main.tex
+
+The parametric design environment (PDE), shown schematically in Figure \ref{fig:performative} details the multiple processes that were used in parallel to handle the different technological branches. From this, four key outputs are generated: the structural performance, energetic performance, manufacturing plans, and visual renders. Inputs to the PDE are defined by the parameters that have the greatest influence on the design. In this case, they are the overall frame dimension and profile, the photovoltaic panel dimension, spacing and layout, and the range of motion. These inputs are numerically fed into the design environment and generate instantaneous results, allowing for quick feedback loops with the major stakeholders (architects, structural engineering, energy engineers, and production team) involved in the project. \\
+
+%To achieve a fully integrated design of the ASF, multiple processes  were used in parallel and needed to be handled by a small team that could keep a good overview of the project. The complexity of the task arises from the diversity of the engineering and design branches involved in the project, as well as from the non-linear work flow, characterized by a chain of feedback loops that continuously improve the final outcome. This PDE is shown schematically in Figure \ref{fig:performative} and generates four key outputs: the structural performance, energetic performance, manufacturing plans, and visual renders. Inputs to the PDE are defined by the paramaters that have the greatest influence on the design. In this case they are the overall frame dimension and profile, the photovoltaic panel dimension, spacing and layout, and the range of motion. These inputs are numerically fed into the design environment and generate instantaneous results, allowing for quick feedback loops with the major stakeholders (architects, structural engineering, energy engineers, and production team) involved in the project. \\
+
+%\deleted[id=johannes, remark= I would move this to the discussion]{In a classical design process, a stakeholder meeting is often an information exchange, where results of their independent evaluations are discussed, and tasks are set for the next design iteration. With the PDE, the meetings become a design session, where each stakeholder can suggest design inputs based of the predefined input parameters, and see immediate results. The environment also develops over time with the project, where new inputs and outputs can be created.\\}
+
+The environment combines the geometric modelling software Rhinoceros 3D \cite{Rhino}, its parametric plug-in Grasshopper \cite{grasshopper}, and python \cite{python} as a scripting language. The relatively unspecialised nature of Rhino is complemented by a large number of specialised add-ons for Grasshopper. Furthermore, custom Grasshopper modules can be scripted using python. The following subsections will explain the structural and energetic analysis in more detail.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{Performative_Design_Ecosystem.pdf}
+\caption{The PDE}
+\label{fig:performative}
+\end{center}
+\end{figure}
+
+\subsection{Structural form finding and finite element analysis}
+
+The proposed ASF is based on a vaulted cross-hatched network of stainless steel pipes as seen in Figure \ref{fig:structure}. The junctions where the pipes cross serve as the mounting points for each dynamic photovoltaic module. All utility lines are routed within the pipe network. A steel frame supports the pipe network to create a stand-alone pre fabricated component, which can be mounted directly to the building envelope. The vaulted shape further strengthens the structure against wind loads, thus allowing for thinner pipe diameters, which increases transparency. \\
+
+
+The form of the vaulted structure is determined through RhinoVault, a form finding plug in for Grasshopper \cite{Rippmann2012}. The method calculates the optimum shape of the pipe network based on the loading points and inputs to the design environment. Once the form is determined, a structural second order finite element analysis is conducted using the Karamba3d plug-in \cite{karamba} to dimension the structural elements. Further manual adjustments to the mesh can be conducted to improve the architectural image. Each manual adjustment is directly computed by the second order FEA module, providing real time feedback about the stability of the adjusted structure.  Figure \ref{fig:structureSettings} shows an example of this output with a list of simulation parameters. A load of 420N was applied on each panel node, which is equivalent to a category one hurricane on the Saffir-Simpson scale. The results are visualised in the form of coloured meshes which detail the utilisation factor in relation to the von Mises stress. A scaled down 2.2m x 1.5m prototype was constructed to validate the structural model. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{HiLoFrontRenderSmall.png}
+\caption{The Adaptive Solar Facade existing in varying states}
+\label{fig:structure}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{HiLo_ASF_Structural_Simulation.png}
+\caption{An example output from the Karamba structural simulation. The black arrows detail the loading direction, and the colour details the utilisation factor in relation to the von Mises stress. The table on the right details the input parameters to the simulation.}
+\label{fig:structureSettings}
+\end{center}
+\end{figure}
+
+\subsection{Energy Evaluation}
+\label{ch:energy}
+
+The evaluation of the energetic performance of the ASF can be found in \cite{jayathissa2017optimising}, and will be briefly reviewed here for completion. This part of the PDE consists of five stages: 
+
+\begin{enumerate}
+\item \textbf{Solar Radiation Model:} The radiation on the PV panels and window behind the ASF is calculated for a single configuration of the ASF using the Grasshopper - LadyBug plugin for a single time step \cite{roudsari2013ladybug}. An example of the simulation result is shown in Figure \ref{fig:radiation}.
+\item \textbf{PV Electricity Production:} The radiation result is coupled to an electrical circuit simulation of monolithically interconnected, thin-film CIGS PV modules. This model takes into account the effects of module self-shading and temperature dependence \cite{hofer2016parametric}. 
+\item \textbf{Building Energy Model:} The radiation calculated on the window surface is fed to a 5R1C single zone resistance-capacitance building model based on the ISO 13790 standard \cite{de2008iso}. This calculates the heating or cooling demand of the building for the particular time step. 
+\item \textbf{Daylighting Model:} A linear daylighting model based on the total flux methodology is used to determine the luminosity in the room \cite{szokolay1980handbook}. 
+\item \textbf{Optimisation:} The simulation is conducted for all possible panel angle combinations based on the inputs to the parametric environment. The angle combination with the lowest net energy consumption is chosen for each time step. By summing all the time steps, the annual energetic performance of the ASF can be evaluated. 
+\end{enumerate}
+
+The source code for this methodology, with installation instructions can be downloaded from github \cite{ASFGitHub,RCGitHub}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{radiationHiLo2.png}
+\caption{A simulation result showing the radiation on the solar panels and the window element on the 16 June 2013 between 12:00-13:00 in Zurich.}
+\label{fig:radiation}
+\end{center}
+\end{figure}
+
+
+\subsection{Integration of classical design methods}
+
+A purely parametric approach is very useful in investigating design possibilities, but once the concept needs to be put in practice, the parametric design environment needs to be complemented with physical prototypes, testing and classical design methods like simple 3D modelling and electronics design.
+As there is a trade-off  between the  flexibility of a parameterised environment and the time required for its development, it is important to wisely choose what to parameterise and what to design with classical methods. Parametrising the entire design process of complex systems such as an ASF can result in instabilities and lead to an increase in design time. For this reason, it is important to include certain constants amongst the parametric variables. Constants include the design of the electronics, connection details, and the actuator design \cite{Svetozarevic2017a,svetozarevic2016soro}.
+
+

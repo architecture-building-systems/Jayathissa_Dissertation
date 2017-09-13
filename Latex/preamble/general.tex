@@ -55,6 +55,15 @@
 \usepackage{amsmath}
 %\usepackage{amssymb}
 \usepackage{mathtools}
+%I think this fucks up the bib somehow
+\makeatletter
+\providecommand\add@text{}
+\newcommand\tagaddtext[1]{%
+  \gdef\add@text{#1\gdef\add@text{}}}% 
+\renewcommand\tagform@[1]{%
+  \maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}%
+}
+\makeatother
 \usepackage{isomath}
 
 % Figures, tables, and captions
@@ -102,10 +111,22 @@
 % Graphics
 \usepackage{graphicx}
 \usepackage{rotating}
-\usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usetikzlibrary{shapes.geometric}
+
+%Flowcharts
+%\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{shapes,arrows}
+\tikzstyle{decision} = [diamond, draw, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, 
+    text width=6em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse, node distance=3cm,
+    minimum height=2em]
 
 % Circled numbers
 \newcommand*\circled[1]{
@@ -212,12 +233,13 @@
   {\raggedright\spacedallcaps}[\normalsize\vspace*{.8\baselineskip}\titlerule]%
 
 % Chapter abstract
-\def\chapterabstract#1{%
+% A bit buggy, maybe try fix TODO
+\def\chapterabstract#1{
   \begingroup
   \baselineskip1.3em
   \leftskip1em
-  \rightskip\leftskip\itshape#1
-  \par
+  \rightskip\leftskip\itshape%#1
+  %\par
   \endgroup
 }
 

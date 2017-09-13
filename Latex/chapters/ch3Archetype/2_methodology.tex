@@ -1,0 +1,110 @@
+% !TEX root = 99_main.tex
+
+A control methodology of adaptive photovoltaic shading systems to maximise PV electricity production while minimising the building energy consumption was proposed by Jayathissa et al. \cite{jayathissa2017AE}. It will be briefly reviewed here for completeness.
+
+\begin{itemize}
+\item \textbf{Solar Radiation Model:} The radiation on the PV panels and window behind the ASF is calculated for a single configuration of the ASF using LadyBug/Radiance for a single time step of one hour \cite{roudsari2013ladybug,ward1994radiance}.
+\item \textbf{PV Electricity Production:} The radiation result is coupled to an electrical circuit simulation of monolithically interconnected, thin-film CIGS PV modules. This model takes into account the effects of module self-shading and temperature dependence \cite{hofer2016parametric}.
+\item \textbf{Building Energy Model:} A 5R1C single zone resistance-capacitance building model based on the ISO 13790 standard computes the heating or cooling demand of the building for the particular timestep \cite{de2008iso}. We assume that the only surface in contact with the external environment is the south facing glazed surface. All other surfaces are in contact with other thermal zones and modelled as adiabatic surfaces. The climate in Zurich is defined as an oceanic climate (Cfb) by the Koeppen Index with an average July temperature of 18.4$^{\circ}$C, and January temperature of 0.2$^{\circ}$C \cite{koppenZurich}.
+% \added[id=pj, remark={may delete to trim to 6 pages}]{This will be further expanded in Section \ref{ch:rc}.}
+\item \textbf{Daylighting Model:} A linear daylighting model based on the total flux methodology is used to determine the luminosity in the room \cite{szokolay1980handbook}. 
+\item \textbf{Optimisation:} The simulation is conducted for all possible panel angle combinations. The angle combination with the lowest net energy consumption is chosen for each timestep.
+\end{itemize}
+
+
+
+% \subsection{Building Simulation Model}
+% \label{ch:rc}
+
+% \added[id=pj, remark={may delete to trim to 6 pages}]{This subsection describes the physics-based method to simulate the thermal behaviour of the building using a resistor-capacitor (RC) model. The model, shown in Figure \ref{fig:RC_Model}, consists of one internal thermal capacitance, and five thermal resistances.}
+
+% \begin{figure}
+% \begin{center}
+%     \begin{circuitikz}[scale = 0.7, transform shape]
+%       \draw (0,0)
+%       node[label={left:$T_e$}] {}
+%       to[short,*-] (1,0)
+%       to[short] (1,1)
+%       to[european resistor=$H_w$] (3,1); % The resistor
+
+%       \draw(1,0)
+%       to[short] (1,-1)
+%       to[european resistor=$H_{em}$] (3,-1)
+%       node[label={10:$T_m$}] {}
+%       to[european resistor,l_=$H_{ms}$] (3,1)
+%       node[label={10:$T_s$}] {}
+%       to[european resistor,l_=$H_{is}$] (3,3)
+%       node[label={10:$T_{air}$}] {}
+%       to[european resistor,l_=$H_{ve}$] (1,3)
+%       to[short,-*] (0,3)
+%       node[label={left:$T_{sup}$}] {};
+
+%       \draw(3,-1)
+%       to[short,*-] (5,-1)
+%       to[short] (5,1)
+%       to[short,-*] (3,1);
+
+%       \draw(5,1)
+%       to[short] (5,3)
+%       to[short,-*] (3,3)
+%       to[european current source,l_=$\phi_{HC}$] (3,5);
+
+%       \draw(5,1)
+%       to[european current source,l_=$\phi_{sol}+\phi_{int}$] (7,1);
+
+%       \draw(3,-1)
+%       to[C=$C_m$] (3,-2)
+%       node[ground]{};
+
+
+%     \end{circuitikz}
+%     \caption{\added[id=pj, remark={may delete to trim to 6 pages}]{A 5R1C Model of the single zone space \cite{de2008iso}}}
+% \label{fig:RC_Model}
+% \end{center}
+% \end{figure}
+
+% \added[id=pj, remark={may delete to trim to 6 pages}]{In this model, we assume that the only surface in contact with the external environment is the south facing glazed surface. All other surfaces of the room are in contact with other thermal zones of the building that we assume to hold the same room temperature. We therefore model them as adiabatic surfaces. Denoting by $T_m$, the temperature of the thermal mass in the room, the differential equation for the circuit in Figure \ref{fig:RC_Model} can be discretised as:}
+
+% \begin{equation} 
+% \label{eq:derivation}
+%       T_{m_{k+1}}={\frac{\phi_{mtot}+T_{m_k}\Big(\frac{C_m}{\Delta t} - 0.5(H_{tr3}+H_e)\Big)}{\frac{C_m}{\Delta t} + 0.5(H_{tr3}+H_e)}}
+% \end{equation}
+
+\subsection{Sensitivity Analysis}
+
+Sensitivities in the framework can be modelled by adjusting variables in the resistor-capacitor model. Two envelope sensitivities will be analysed in this study
+
+\begin{itemize}
+
+\item \textbf{Envelope Thermal Transmittance:} The building envelope is characterised in the RC model as $H_w$ which is the U-value of the envelope. 
+\item \textbf{Infiltration:} The infiltration rate is modified as an air exchange conductance in the ISO RC model $H_{ve}$ \cite{de2008iso,jayathissa2017AE}.
+
+This quasi-conductance is modelled as
+
+\begin{equation} 
+\label{eq:vent}
+      H_{ve}= \frac{\rho c_a V_{room}}{3600}\Big[ ACH_{infl} + ACH_{vent}(1-\eta_{vent}) \Big]
+\end{equation}
+
+where: 
+
+$\rho c_a$ is the heat capacity per air volume = 1200 $J/(m^3 K)$;
+
+$\eta_{vent}$ is the efficiency of the ventilation heat recovery unit
+
+$ACH_{vent}$ is the air changes per hour for ventilation of the room volume $V_{room}$
+
+$ACH_{infl}$ is the air changes per hour for the infiltration of the room volume $V_{room}$ which is the variable in this sensitivity analysis
+
+\end{itemize}
+
+
+\subsection{Analysis of Archetypes}
+
+Building envelope parameters are imported from the CEA Toolbox, an open source urban building simulation software. The archetype databases are publicly available on the CEA GitHub page \cite{CEAArchetypes,CEAToolbox}. From this data, the following variables are evaluated: envelope U-value, occupancy profile, human heat emissions, lighting control set point, lighting load, thermal set points, and building thermal capacitance.
+
+One critical component not analysed in the evaluation is the window to wall ratio. This was kept constant to maintain a valid comparison.
+
+
+
+

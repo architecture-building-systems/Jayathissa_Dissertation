@@ -1,0 +1,94 @@
+% !TEX root = 99_main.tex
+% \section{Full Set of Equations to the Building Model}
+
+% The following equations are based on the ISO 13790 standard \cite{de2008iso}. Denoting by $T_m$, the temperature of the thermal mass in the room,
+
+% \begin{equation} 
+% \label{eq:derrive}
+%       T_m(H_{tr3}+H_e) + C_m {\frac{dT_m}{dt}} = \phi_{mtot}
+% \end{equation}
+
+% The value $\phi_{mtot}$ represents an equivalent thermal heat flux and is given by,
+
+% \begin{equation} 
+% \label{eq:heatflow2}
+%       \phi_{mtot}= \phi_m + H_eT_e + \frac{H_{tr3}}{H_{tr2}}(\phi_{st} + H_wT_e + H_{tr1}T_{sup} + \frac{H_{tr1}}{H_{ve}}(\phi_{HC} + \phi_{io}))
+% \end{equation}
+
+% where $C_m$ is the thermal capacitance of the room, $T_e$ is the external air temperature, $T_{sup}$ is the conditioned air supply temperature. The solar heat gains $\phi_{sol}$, and internal heat gains $\phi_{int}$ are represented by three equivalent heat fluxes $\phi_{io}$, $\phi_{st}$ and $\phi_m$ which correspond to a heat exchange to the air $T_{air}$, internal room surface $T_s$, and thermal mass $T_m$ respectively. The heating and cooling heat flux is represented by $\phi_{HC}$. The five thermal conductances $H$ are represented by three equivalent conductances
+
+% \begin{equation} 
+% \label{eq:Htr12}
+%       H_{tr1}= \frac{1}{1/H_{ve} + 1/H_{is}}
+% \end{equation}
+
+% \begin{equation} 
+% \label{eq:Htr2}
+%       H_{tr2}= H_{tr1} + H_{w}
+% \end{equation}
+
+% \begin{equation} 
+% \label{eq:Htr32}
+%       H_{tr3}= \frac{1}{1/H_{tr2} + 1/H_{ms}}
+% \end{equation}
+
+% The internal heat flow rates due to internal gains and solar sources are divided between the thermal nodes by
+
+% \begin{equation} 
+% \label{eq:phi_ia2}
+%       \phi_{io}= 0.5\phi_{int}
+% \end{equation}
+
+% \begin{equation} 
+% \label{eq:phi_m2}
+%       \phi_{m}= \frac{A_m}{A_t}(0.5\phi_{int} + \phi_{sol})
+% \end{equation}
+
+% \begin{equation} 
+% \label{eq:phi_st2}
+%       \phi_{st}= (1-\frac{A_m}{A_t}-\frac{H_w}{9.1*A_t})(0.5\phi_{int}+\phi_{sol})
+% \end{equation}
+
+
+
+
+% Applying the Crank-Nicolson method \cite{crank1947practical} to Equation \ref{eq:derrive} gives us the discrete differential equation: 
+
+% \begin{equation} 
+% \label{eq:derivation2}
+%       T_{m_{k+1}}={\frac{\phi_{mtot}+T_{m_k}(\frac{C_m}{\Delta t} - 0.5(H_{tr3}+H_e))}{\frac{C_m}{\Delta t} + 0.5(H_{tr3}+H_e)}}
+% \end{equation}
+
+% \section{Default Variables to the Building Model}
+% \label{app:default}
+
+% Default variables are based off the case study by Jayathissa et al. \cite{jayathissa2017AE}.
+
+% \begin{table*}[ht]
+% \centering
+% \begin{tabular*}{\textwidth}{lll}
+
+% Temperatures   & Description                                   & Default Value               \\
+% \hline
+% $\theta_{air}$ & Room Air Temperature                          & calculated                  \\
+% $\theta_s$     & Room Surface Temperature                      & calculated                  \\
+% $\theta_m$     & Room Mass Temperature                         & calculated                  \\
+% $\theta_{sup}$ & Supply Air Temperature                        & $\theta_e$                  \\
+% $\theta_e$     & Outdoor Air Temperature                       & Zurich 2013 Weather File    \\
+%                &                                               &                             \\
+% Conductances   &                                               &                             \\
+% $H_{ve}$       & Ventalation Conductance                       & $39 W/K$                    \\
+% $H_{w}$        & Wall Conductance                              & $14.9 W/K$                  \\
+% $H_{em}$       & Glazzed Conductance                           & $0.34 W/K$                  \\
+% $H_{is}$       & Coupling Conductance Between Air and Surface  & $491 W/K $                  \\
+% $H_{ms}$       & Coupling Conductance Between Surface and Mass & $780 W/K $                  \\
+%                &                                               &                             \\
+% Heat Fluxes    &                                               &                             \\
+% $\phi_{HC}$    & Energy from Heating or Cooling                & calculated                  \\
+% $\phi_{sol}$   & Solar Heat Gains                              & From ASF Radiation Analysis \\
+% $\phi_{int}$   & Internal Heat Gains                           & From Occupancy Profile      \\
+% \end{tabular*}
+% \caption{Summary of default simulation parameters}
+% \label{tab:AssumptionsOpp}
+% \end{table*}
+
