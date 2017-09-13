@@ -1,4 +1,110 @@
 \chapter{Appendix}
 \label{ch:appendix}
 
-Here be dragons.
+\section{Full Set of Equations to the Building Model}
+
+The following equations are based on the ISO 13790 standard \cite{de2008iso}. Denoting by $T_m$, the temperature of the thermal mass in the room,
+
+\begin{equation} 
+\label{eq:derrive2}
+      T_m(H_{tr3}+H_e) + C_m {\frac{dT_m}{dt}} = \phi_{mtot}
+\end{equation}
+
+The value $\phi_{mtot}$ represents an equivalent thermal heat flux and is given by,
+
+\begin{equation} 
+\label{eq:heatflow2}
+      \phi_{mtot}= \phi_m + H_eT_e + \frac{H_{tr3}}{H_{tr2}}(\phi_{st} + H_wT_e + H_{tr1}T_{sup} + \frac{H_{tr1}}{H_{ve}}(\phi_{HC} + \phi_{io}))
+\end{equation}
+
+where $C_m$ is the thermal capacitance of the room, $T_e$ is the external air temperature, $T_{sup}$ is the conditioned air supply temperature. The solar heat gains $\phi_{sol}$, and internal heat gains $\phi_{int}$ are represented by three equivalent heat fluxes $\phi_{io}$, $\phi_{st}$ and $\phi_m$ which correspond to a heat exchange to the air $T_{air}$, internal room surface $T_s$, and thermal mass $T_m$ respectively. The heating and cooling heat flux is represented by $\phi_{HC}$. The five thermal conductances $H$ are represented by three equivalent conductances
+
+\begin{equation} 
+\label{eq:Htr12}
+      H_{tr1}= \frac{1}{1/H_{ve} + 1/H_{is}}
+\end{equation}
+
+\begin{equation} 
+\label{eq:Htr2}
+      H_{tr2}= H_{tr1} + H_{w}
+\end{equation}
+
+\begin{equation} 
+\label{eq:Htr32}
+      H_{tr3}= \frac{1}{1/H_{tr2} + 1/H_{ms}}
+\end{equation}
+
+The internal heat flow rates due to internal gains and solar sources are divided between the thermal nodes by
+
+\begin{equation} 
+\label{eq:phi_ia2}
+      \phi_{io}= 0.5\phi_{int}
+\end{equation}
+
+\begin{equation} 
+\label{eq:phi_m2}
+      \phi_{m}= \frac{A_m}{A_t}(0.5\phi_{int} + \phi_{sol})
+\end{equation}
+
+\begin{equation} 
+\label{eq:phi_st2}
+      \phi_{st}= (1-\frac{A_m}{A_t}-\frac{H_w}{9.1*A_t})(0.5\phi_{int}+\phi_{sol})
+\end{equation}
+
+
+
+
+Applying the Crank-Nicolson method \cite{crank1947practical} to Equation \ref{eq:derrive} gives us the discrete differential equation: 
+
+\begin{equation} 
+\label{eq:derivation2}
+      T_{m_{k+1}}={\frac{\phi_{mtot}+T_{m_k}(\frac{C_m}{\Delta t} - 0.5(H_{tr3}+H_e))}{\frac{C_m}{\Delta t} + 0.5(H_{tr3}+H_e)}}
+\end{equation}
+
+
+
+\section{LCA Parameters}
+\subsection{Electricity production of different PV Systems}
+\begin{landscape}
+\begin{table}
+\begin{tabular}{lccccc}
+\hline
+                                         &  ASF & Orientated Solar Facade & Flat  CIGS & Flat  CdTe & Flat  PolySi \\
+\hline
+Total Irradiation (kWh/m2/year)          & 855.0 & 855.0 & 855.0 & 855.0 & 855.0 \\
+Utility Factor (m2/m2)                   & 0.69  & 0.69  & 0.69  & 0.69  & 0.69  \\
+Losses from sub optimal angle            & 0.00  & 0.30  & 0.38  & 0.38  & 0.38  \\
+Irradation of active PV  (kWh/m2/year)   & 593.8 & 415.6 & 365.3 & 365.3 & 365.3 \\
+Efficiency                               & 0.11  & 0.11  & 0.11  & 0.10  & 0.14  \\
+Self Shading Losses                      & 0.40  & 0.40  & 0.00  & 0.00  & 0.00  \\
+Losses due to sub optimal tracking angle & 0.77  & 1.00  & 1.00  & 1.00  & 1.00  \\
+\textbf{Total Power (kWh/year)}          & 458.7 & 417.0 & 610.8 & 555.3 & 777.4 \\
+\hline
+\end{tabular}
+\caption{Total PV production for the ASF, a static version of the ASF in an optimal orientation for building shading and PV production, and classical flat facade mounts of CIGS, CdTe and PolySi panels in Frankfurt, Germany}
+\label{tab:PVCalc}
+\end{table}
+\end{landscape}
+
+\subsection{Major Contributions to Disposal}
+\begin{landscape}
+\begin{table}[H]
+\begin{tabular}{lll}
+
+\hline
+                                                                   & GWP   & TAP     \\
+\hline                                                                
+Treatement of waste polyurethane, municipal incineration           & 32.7  & 0.0223  \\
+Treatement of waste electric wiring, collection for final disposal & 31.6  & 0.0162  \\
+Treatement of scrap aluminium, municipal incineration              & 3.93  & 0.0404  \\
+Treatement of scrap steel, municipal incineration                  & 3.7   & 0.039   \\
+Treatement of electronics scrap from control units                 & 2.89  & 0.001   \\
+Treatement of waste polyethylene, municipal inceneration           & 1.07  & 0.0001  \\
+Market for waste electric, and electronic equipment                & 0.923 & 0.00178 \\
+Treatement of scrap copper, municipal incineration                 & 0.285 & 0.00051 \\
+\hline
+\end{tabular}
+\caption{Major Disposal Global Warming Potential (GWP) and Terrestrial Acidificaton Potential (TAP) contributions to the Disposal of an ASF. Note that the cut off system model is used.}
+\label{tab:dispEmssions}
+\end{table}
+\end{landscape}
