@@ -15,7 +15,7 @@ The design of the PV panel layout is an example where all four stakeholders had 
 \end{center}
 \end{figure}
 
-\subsection{Structure}
+\subsection{Optimum Supporting Frame Dimension}
 \label{ch:structure}
 
 
@@ -23,7 +23,7 @@ With a frame size of 2.5 x 4.02 m, a PV panel spacing of 510 mm and a structural
 
 The relatively large frame is the result of a snap-through buckling failure criterion and relatively weak support conditions at the corners. As the vault is loaded, the large lateral forces on the frame result in deflections, which in turn reduce the depth of the vaulted structure. The reduced depth of the vault further increases the lateral loading, thus leading to a global snap-through buckling failure. The frame must therefore be large enough to withstand the maximum load criterion with minimal deflection. This solution is characteristic to the conditions present on the HiLo building, where the ASF will be mounted with an offset of 80 cm from the building's support structure. In principle, the edge point of the pipe structure could be mounted directly to the support structure of the building, thus reducing the need for a frame. Figure \ref{fig:frameSize} depicts how the utilisation of the pipe elements decreases with increasing frame strength, up to the point where all edge points are supported individually. 
 
-The 150 mm depth of the vaulted structure is sufficient to handle the wind loads with relatively thin pipes and minimal variation in the panel orientation. Ultimately, the choice of the structural depth is a trade-off between stability,  self-shading, and aesthetics. A deeper structure offers more load bearing capacity requiring thinner pipes, however the self-shading of the panels increase. On the other hand, a shallow structure is less resilient to wind loads, leading to thicker pipes. The effect of the depth on the structural stability is depicted in Figure \ref{fig:StructuralDepth}. The image shows how the maximum utilisation of the pipes decreases with increasing structural depth, with a very steep decrease in the range of 12-15 cm. 
+The 150 mm depth of the vaulted structure is sufficient to handle the wind loads with relatively thin pipes and minimal variation in the panel orientation. Ultimately, the choice of the structural depth is a trade-off between stability,  self-shading, and aesthetics. A deeper structure offers more load bearing capacity requiring thinner pipes, however the self-shading of the panels increase. On the other hand, a shallow structure is less resilient to wind loads, leading to thicker pipes. The effect of the depth on the structural stability is depicted in Figure \ref{fig:StructuralDepth}. The figure shows how the maximum utilisation of the pipes decreases with increasing structural depth, with a very steep decrease in the range of 12-15 cm. 
 
 The construction details contribute significantly to the overall stability of the structure and to the match between the real behaviour and the FEA simulation. For this reason, we designed the pipe and frame connections to provide a completely stiff connection under the assumed wind loads. To form the vaulted shape, each pipe element is bent close to its edges and kept straight in between those points to improve their stability to localised buckling.
 
@@ -50,7 +50,7 @@ The construction details contribute significantly to the overall stability of th
 
 \subsection{Structural Validation}
 
-A scaled down, 2.2m x 1.5m, prototype designed through the PDE was constructed for testing purposes. Weights were added to each of the seven junction nodes in 5kg increments until the structure collapsed as seen in Figure \ref{fig:validation}. Each junction node was also fitted with a deflection gauge.
+Due to the complexity of the joints and double curved form, it was important to validate the structural analysis. A scaled down, 2.2m x 1.5m, prototype designed through the PDE was constructed for testing purposes. Weights were added to each of the seven junction nodes in 5kg increments until the structure collapsed as seen in Figure \ref{fig:validation}. Each junction node was also fitted with a deflection gauge.
 
 The results of this analysis are summarised in Table \ref{tab: validation}. The simulated model underestimates the overall strength by 12\% which is sufficient to validate our model. The deflection results, however, have a larger diversion. This diversion can be attributed to a weak construction joint at one of the edge nodes. The average deflection of the structure is 10.5mm which is close to the simulated model. Besides confirming the accuracy of the simulation, this test also confirmed the predicted snap-though buckling failure. Additionally, as seen in Figure \ref{fig:failure2}, the junction nodes, and frame connections were capable of resisting local torsion and maintained their position. The failure was localised at the pipes as predicted in Section \ref{ch:structure}. 
 
@@ -96,7 +96,7 @@ Max Deflection & 14.5mm         & 10.3mm  & -29\%        \\
 
 \subsection{Module Design}
 
-The kinetic PV module was then designed to fit within the requirements of the optimised layout and structure. The PV panels must be able to fully open, and fully close without making contact with the rod-net structure or other PV modules as shown in Figure \ref{fig:constraints}. The PV panel is actuated using a soft pneumatic actuator \cite{Svetozarevic2017a}. The actuator is made from neoprene rubber and contains three air chambers. By pumping one or more of these chambers with compressed air, the actuator will deform, thus moving the panel with a 90$^{\circ}$ range in two degrees of freedom. The cantilevered bracket connects this actuator to the rod-net structure and holds it at a distance that prevents collision with other PV panels or the structure. A decentralised control box, located behind the junction element, contains three pneumatic valves and an electronic board addresses the valves over a common data bus. This controls the flow of air to the chambers inside the actuator. An exploded view of the module is shown in Figure \ref{fig:exploded}.
+The kinetic PV module was then parametrically designed to fit within the requirements of the optimised layout and structure. The PV panels must be able to fully open, and fully close without making contact with the rod-net structure or other PV modules as shown in Figure \ref{fig:constraints}. The PV panel is actuated using a soft pneumatic actuator \cite{Svetozarevic2017a}. The actuator is made from neoprene rubber and contains three air chambers. By pumping one or more of these chambers with compressed air, the actuator will deform, thus moving the panel with a 90$^{\circ}$ range in two degrees of freedom. The cantilevered bracket connects this actuator to the rod-net structure and holds it at a distance that prevents collision with other PV panels or the structure. A decentralised control box, located behind the junction element, contains three pneumatic valves and an electronic board addresses the valves over a common data bus. This controls the flow of air to the chambers inside the actuator. An exploded view of the module is shown in Figure \ref{fig:exploded}.
 
 
 \begin{figure}
@@ -119,7 +119,7 @@ The kinetic PV module was then designed to fit within the requirements of the op
 
 Once a design has been configured using the PDE, manufacturing plans can be automatically generated. This enables the plans to be immediately sent to manufacturers, without a significant time investment. This is especially important for components such as the steel pipes where each pipe has a unique length and bend angle. As an example, Figure \ref{fig:pipeplans} details four of the 92 pipe bending plans. Besides the plan, the PDE also generates a set of meta data that can be directly fed into a CNC pipe bending machine, thus simplifying the transition from design to production.  
 
-An ASF for the HiLo building was fabricated for testing purposes. The overall system took two people 11 days to construct, and was mounted onto a temporary concrete wall in one day, as seen in Figure \ref{fig:mounting}. The design generated by the performative design environment was flawless. The ASF is currently undergoing tests to measure the electricity generation and adaptive control strategy. When the HiLo building is complete, it will be dismounted from its temporary location, and remounted in front of the south facing bedroom window of the HiLo. 
+An ASF for the HiLo building was fabricated for testing purposes. The overall system took two people 11 days to construct, and was mounted onto a temporary concrete wall in one day, as seen in Figure \ref{fig:mounting}. The design generated by the performative design environment was flawless. The ASF is currently undergoing tests to measure the electricity generation and adaptive control strategy. 
 
 \begin{figure}
 \begin{center}
