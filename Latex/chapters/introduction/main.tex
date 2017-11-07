@@ -7,6 +7,9 @@
   Intelligence is the ability to adapt to change}%
 \vskip 1em
 
+\section{The Adaptive Envelope}
+\label{ch:introductionAdaptive}
+
 A building, in its original manifestation, is a shelter. A means to protect the human body from harsh external conditions. And within this we ascribe the notion of the envelope, the barrier between the external and internal environments. It is the barrier that protects us from frigid temperatures, shades us from solar rays, and keeps us dry when a storm passes by. And over time, we have not just developed the quality of our envelopes, but also technologies that enable us to manufacture interior environments. The combination of heating, cooling, lighting and air handling enables us to exclude the energies of the exterior and form hermatic envelopes. Buildings transformed from mere shelters, to places of comfort where we now spend 87\% of our lives \cite{klepeis2001national}. We have in essence, become an indoor species. \
 
 Unfortunately, the manufacture of interior environments comes with a large environmental impact. Buildings are currently responsible for 32\% of our final energy use and 19\% of our total greenhouse gas emissions \cite{IPCC}. There is, however, a 50\% - 90\% emission reduction potential using existing technologies \cite{IPCC}. On one hand, the efficiency of our manufactured interior environment can be increased. We can install more efficient systems to manufacture this energy at a lower environmental cost. We can further increase the isolation properties of our envelopes, thus reducing the energetic loss to the exterior. On the other hand, we can rewind the clock of architectural history and move back to a time where we did not manufacture internal environments, but rather mediated the external energies to fulfil that of the interior. These strategies, commonly described as passive design strategies, include aspects such as natural ventilation, thermal storage, and static shading. 
@@ -15,37 +18,75 @@ Instead of rewinding the clock of architectural history, there is also the possi
 
 %These responsive envelopes are beneficial in reducing overall energy consumption, but lacks flexibility as the designer must set the threshold radiation levels at which the envelope opens and closes
 
-In an ideal setting, as shown in Figure \ref{fig:facadefunctions}, the envelope does not just exist in an open or closed state, but in a multitude of states fullfilling various functions. The modularity described in this schematic enables certain parts of the envelope to respond for optimal daylight distribution, whereas others are optimised for heating / cooling demand reduction, and enhancing views to the exterior. If we also replace the envelope material with light weight thin film solar panels, we can also harvest solar energy onsite and use it to meet the demands of the interior space. It is through this modularity that we can best balance user comfort, with building energy saving.
+In an ideal setting, as shown in Figure \ref{fig:facadefunctions}, the envelope does not just exist in an open or closed state, but in a multitude of states fullfilling various functions. The modularity described in this schematic enables certain parts of the envelope to respond for optimal daylight distribution, whereas others are optimised for heating / cooling demand reduction, and enhancing views to the exterior. If we also replace the envelope material with light weight thin film solar panels, we can harvest solar energy onsite and use it to meet the demands of the interior space. It is through this modularity that we can best balance user comfort, with building energy saving.
 
-This modularity however introduces new challenges in terms of control. In a responsive system the designer sets threshold radiation levels at which the envelope opens and closes. This modular envelope however, can have thousands of possible states, and needs to find the optimum balance between building energy demand reduction, occupant comfort, and PV electricity production. It is in this context that I coin the term adaptive. An adaptive envelope senses it's environment, such as the occupancy, interior temperature, exterior temperature and radiation levels, and then determines the optimum envelope configuration to mediate a comfortable interior environment while minimising the total net energy consumption. 
+This modularity however introduces new challenges in terms of control. In a responsive system the designer sets threshold radiation levels at which the envelope opens and closes. This modular envelope however, can have thousands of possible states, and needs to find the optimum balance between building energy demand reduction, occupant comfort, and photovoltaic (PV) electricity production. It is in this context that one coins the term adaptive. An adaptive envelope senses its environment, such as the occupancy, interior temperature, exterior temperature and radiation levels, and then determines the optimum envelope configuration to mediate a comfortable interior environment while minimising the total net energy consumption. 
 
 This adaptive nature can span different time durations. In the short time span, if the sun goes behind a cloud, or the occupancy dramatically increases, the envelope will be able to adapt to meet this new environment. Likewise, the envelope will also adapt to long term variations such as global warming. 
 
-This dissertation is written in the context of the Adaptive Solar Facade (ASF), an adaptive photovoltaic envelope designed for a research and innovation unit known as the HiLo \cite{Block2017}. The ASF is a modular facade of 40 x 40 cm copper indium galium selenide (CIGS) PV panels that can be actuated in two degrees of freedom with a range of 90$^{\circ}$. An example of this, mounted on a testing site can be seen in Figure \ref{fig:ASFNest}.
+\section{Research Overview}
 
+This thesis presents a holistic study of adaptive envelopes, from design and construction, to control and evaluation. Due to the broad scope, the scientific contribution of this thesis spans multiple disciplines. 
+
+\subsection{Performative Design}
+The development of an adaptive envelope requires innovative changes to the classic design process. In doing so, I present a performative design environment that combines multiple technological branches into a single automated workflow. The work is novel for two reasons. Firstly, it combines fields of architecture, structural engineering, building energy evaluation, photovoltaic design, control, and manufacture into a single workflow that automatically generates the facade geometry, and evaluates its performance. Secondly, it details the entire process from concept to final fabrication. 
+
+
+\subsection{Models for Adaptive Control}
+The design of the adaptive control system requires the development of multiple high speed mathematical models to rapidly evaluate the performance of the facade. This includes:
+\begin{itemize}
+\item Designing a single zone building simulation engine known as a resistance-capacitance model. The software has been open sourced and is being slowly utilised within the academic community. 
+\item Coupling a high resolution radiation model to a PV electricity simulator in order to measure the performance of the PV modules while including the effects of module self shading
+\item Coupling the photovoltaic electricity production to the building energy demand which opens up new methods of building management as the facade controls both the production and consumption of energy. 
+\item Generating and calibrating a rapid linear daylighting model 
+\end{itemize}
+
+The combination of these models creates the adaptive control strategy as introduced in Section \ref{ch:introductionAdaptive}. The models can also be used for the numerical evaluation of energy performance over a range of different building use types.
+
+\subsection{Life Cycle Assessment of Photovoltaic Technologies}
+The evaluation of the system is not just restricted to energetic evaluations, but extends to assess its life cycle impact. In order to achieve an adequate comparison, I evaluate the environmental impact of current building integrated photovoltaic technologies, and compare them to an adaptive system. 
+
+
+% \begin{figure}
+% \begin{center}
+% \includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{\dir/facadeFunctionsnew.pdf}
+% \caption{A modular facade that adapts to various functions for optimising occupant comfort}
+% \label{fig:facadefunctions}
+% \end{center}
+% \end{figure}
+
+% \begin{figure}
+% \begin{center}
+% \includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{\dir/ASFNest.JPG}
+% \caption{The final Adaptive Solar Facade, mounted on a testing site prior to assembly on the HiLo Module}
+% \label{fig:ASFNest}
+% \end{center}
+% \end{figure}
 
 \begin{figure}
-\begin{center}
-\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{\dir/facadeFunctionsnew.pdf}
-\caption{A modular facade adpative to various functions for optimising occupant comfort}
-\label{fig:facadefunctions}
-\end{center}
-\end{figure}
+    \centering
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{\dir/facadeFunctionsnew.pdf}
+		\caption{}
+        \label{fig:facadefunctions}
+    \end{subfigure} 
+    \vspace{10mm}
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{\dir/ASFNest.JPG}
-\caption{The final Adaptive Solar Facade, mounted on a testing site prior to assembly on the HiLo Module}
-\label{fig:ASFNest}
-\end{center}
-\end{figure}
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{\dir/ASFNest.JPG}
+		\caption{}
+        \label{fig:ASFNest}
+    \end{subfigure}
+    \hfill
 
+    \caption{(a) A modular facade that adapts to various functions for optimising occupant comfort. (b) The final Adaptive Solar Facade, mounted on a testing site prior to assembly on the HiLo Module}
+\end{figure}
 
 \newpage
 
 \section{Research Questions}
 
-The four questions addressed in this research are 
+The five questions addressed in this research are 
 
 \begin{itemize}
 \item How can complex architectural components, such as the ASF be designed and constructed? 
@@ -58,4 +99,6 @@ The four questions addressed in this research are
 
 \section{Organisation of the Thesis}
 
-The remainder of this thesis is composed of three journal papers and one conference paper. Chapter \ref{ch:asfDesign} introduces the parametric design environment, which was created for rapid iterative development of the ASF. This chapter also introduces some of the design elements of the ASF. Chapter \ref{ch:asfSimulation} introduces the model predictive control strategy to allows for adaptive control. This chapter first introduces the simulation methodology, and then discusses the energy saving potential of an ASF system. Chapter \ref{ch:asfArchetype} takes on the model from Chapter \ref{ch:asfSimulation} and runs an evaluation on eleven different building use types spanning six construction periods. Chapter \ref{ch:asfLCA} then takes the results of the energy simulation methodology and assesses the carbon life cycle cost. Finally Chapter \ref{ch:mainconclusion} concludes the thesis. 
+The remainder of this thesis is composed of three journal papers and one conference paper. Chapter \ref{ch:asfDesign} introduces the parametric design environment, which was created for rapid iterative development of the ASF. This chapter also introduces some of the design elements of the ASF. Chapter \ref{ch:asfSimulation} introduces the model predictive control strategy to allows for adaptive control. This chapter first introduces the simulation methodology, and then discusses the energy saving potential of an ASF system. Chapter \ref{ch:asfArchetype} takes on the model from Chapter \ref{ch:asfSimulation} and runs an evaluation on eleven different building use types spanning six construction periods. Chapter \ref{ch:asfLCA} then takes the results of the energy simulation methodology and assesses the carbon life cycle cost. Finally Chapter \ref{ch:mainconclusion} concludes the thesis. \\
+
+This dissertation is written in the context of the Adaptive Solar Facade (ASF), an adaptive photovoltaic envelope designed for a research and innovation unit known as the HiLo \cite{Block2017}. The ASF is a modular facade of 40 x 40 cm copper indium galium selenide (CIGS) PV panels that can be actuated in two degrees of freedom with a range of 90$^{\circ}$. An example of this, mounted on a testing site can be seen in Figure \ref{fig:ASFNest}.
