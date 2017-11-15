@@ -1,6 +1,6 @@
 % !TEX root = B99_main.tex
 
-In this paper, we have presented a framework to model the energy performance of an adaptive photovoltaic envelope. This is achieved through the use of Radiance for the radiation simulations, an electrical circuit simulation for the PV production taking into account effects of self-shading, and a resistor-capacitor model for the building simulation. An exhaustive search optimisation algorithm computes the most energy efficient system configuration for control by minimising the heating, cooling and lighting load, while simultaneously maximising the PV electricity generation. This framework can be applied to evaluate different PV system geometries, building systems, building typologies and climates.
+In this chapter, we have presented a framework to model the energy performance of an adaptive photovoltaic envelope. This is achieved through the use of Radiance for the radiation simulations, an electrical circuit simulation for the PV production taking into account effects of self-shading, and a resistor-capacitor model for the building simulation. An exhaustive search optimisation algorithm computes the most energy efficient system configuration for control by minimising the heating, cooling and lighting load, while simultaneously maximising the PV electricity generation. This framework can be applied to evaluate different PV system geometries, building systems, building typologies and climates.
 
 Our evaluation of the Adaptive Solar Facade details the advantages of the adaptive system to a static system. The ASF is able to orientate itself to the most energy efficient position, thus finding the optimum balance between PV generation, and daylight control to minimise heating, cooling and lighting demands. When optimising for heating and lighting minimisation the ASF orients to open altitude positions at 90$^{\circ}$ to the vertical plane. When optimising for PV and cooling, the ASF selects closed position, between 15$^{\circ}$ - 45$^{\circ}$ to the vertical plane. When combining all objectives for net energy minimisation there is a tendency for the ASF to follow an optimal PV production pattern with the exception of winter evenings where it is more favourable to utilise the solar heat gains for space heating and lighting. This result however, is only restricted to this case study. A less efficient heating system, for example, will result in the ASF existing in more open configurations to utilise the solar heat gains.
 
@@ -10,36 +10,7 @@ Our results report a 20\% - 80\% net energy saving compared to an equivalent sta
 This work ultimately presents a framework for the planning and optimisation of sophisticated adaptive BIPV systems. Next stages of the research involve the utilisation of this model in our physical prototypes. The main difference in the physical model is the use of sensor data for the temperature and radiation values, as opposed to using a historical weather file. Furthermore, measuring the indoor temperature, PV electricity production, and lighting quality will create a closed loop feedback for model calibration and machine learning. 
 
 
-%\added[id=pj]{Another limitation is the absence of user control. In reality, the user has the ability to override the system by opening or closing the facade to suit their desires. This override has not been included in this model, and will be evaluated through measurements of our constructed prototypes. }
-
-%. The computation of a single configuration takes 25 seconds on a 3.4GHz processor with 16GB memory. Therefore the computation of 49 configurations assessed in this case study takes approximately 20 minutes.  A faster radiation model, or an alternative control strategy will be required to asses more configurations.
 
 
 
 
-% The existing ASF prototype gives the occupant the ability to manually override the control system to open or close the ASF. 
-
-% This occupant override has not been modelled in the case study evaluation and will reduce the overall energy saving. This will be conducted in our test environment 
-
-
-%The energy saving potential and optimum orientation is also strongly dependant on the building system and weather. Decreasing the efficiency of the heating, cooling or lighting systems will give higher preference for configurations optimised for building thermal management through adaptive shading than for PV electricity production. \added[id=pj]{It is therefore important to run this framework for each individual building project to evaluate the cost-benefit ratio. }
-
-%The optimum orientation and energy saving potential strongly depend on the geometry of the adaptive photovoltaic envelope and the efficiency of the building system. Decreasing the efficiency of the heating, cooling or lighting systems will give higher preference for configurations optimised for building thermal management through adaptive shading than for PV electricity production. 
-
-
-
-
-%The algorithm compensates for this by finding configurations that minimise module self-shading. As a result, the optimum configurations for maximising PV electricity does not follow a classical solar tracking model as this would maximises self-shading, resulting in a system with lower PV generation. These losses could be minimised in the design stage by increasing the spacing between PV modules.
-
-
-
-
-% In this paper, we present a simulation methodology to evaluate a dynamic photovoltaic shading system, combining both electricity generation, and the energy demand of the building. It is then coupled with a post processing python script to determine the optimum system configuration for control. The methodology can be applied to evaluate different PV system geometries, building systems, building typologies and climates.
-
-% The dynamic PV integrated shading system has clear advantages to a static system as it can adapt itself to the external environmental conditions. This enables it to orientate itself to the most energy efficient position. The optimum orientation however, strongly depends on the general efficiency of the building. Decreasing the efficiency of the heating, cooling or lighting systems will give higher preference for configurations optimised for building thermal management through adaptive shading, than for PV electricity production.
-
-% %The use of LED lights, for example, reduces the weighting of the lighting energy demand. This would result in closed configurations optimised for cooling to over-ride the open positions. 
-
-% This work ultimately presents a methodology for the planning and optimisation of sophisticated adaptive BIPV systems. We are currently working on integrating the effects of module shading on PV efficiency, and the energy demand for the dynamic actuation. Future work will use this methodology to determine the environments and building typologies that could benefit from adaptive BIPV systems. 
-
-% %Moved to Introduction: The work presented in this paper is applied in the context of the Adaptive Solar Façade (ASF) project. The ASF is a lightweight PV shading system that can be easily installed on any surface of new or existing buildings. The ASF consists of a modular frame and pneumatically actuated panels to control glare and solar gain, as well as for two-axis PV tracking. It has been implemented at the ETH House of Natural Resources will be installed at the NEST HiLo building at EMPA (www.hilo.arch.ethz.ch). 

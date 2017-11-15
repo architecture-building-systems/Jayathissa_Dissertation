@@ -2,7 +2,7 @@
 
 The parametric design environment (PDE), shown schematically in Figure \ref{fig:performative} details the multiple processes that were used in parallel to handle the different technological branches. From this, four key outputs are generated: the structural performance, energetic performance, manufacturing plans, and visual renders. Inputs to the PDE are defined by the parameters that have the greatest influence on the design. In this case, they are the overall frame dimension and profile, the photovoltaic panel dimension, spacing and layout, and the range of motion. 
 
-These inputs are numerically fed into the design environment and generate instantaneous results of the structural performance, energetic performance, visual renders and manufacturing plans. By doing so, the multiple tradeoffs between the technological branches, as explained in Section \ref{ch:introduction1}, can be simulatenously observed. This ultimately allows for quick feedback loops with the major stakeholders (architects, structural engineering, energy engineers, and production team) involved in the project. \\
+These inputs are numerically fed into the design environment and generate instantaneous results of the structural performance, energetic performance, visual renders and manufacturing plans. By doing so, the multiple tradeoffs between the technological branches, as explained in Section \ref{ch:introduction1}, can be simulatenously observed. The electricity generation, building energy demand, utilisation factor of yield strength, dimensions, collision detection, aesthetics, and manufacturing costs are of particular interest. This ultimately allows for quick feedback loops with the major stakeholders (architects, structural engineering, energy engineers, and production team) involved in the project. \\
 
 %To achieve a fully integrated design of the ASF, multiple processes  were used in parallel and needed to be handled by a small team that could keep a good overview of the project. The complexity of the task arises from the diversity of the engineering and design branches involved in the project, as well as from the non-linear work flow, characterized by a chain of feedback loops that continuously improve the final outcome. This PDE is shown schematically in Figure \ref{fig:performative} and generates four key outputs: the structural performance, energetic performance, manufacturing plans, and visual renders. Inputs to the PDE are defined by the paramaters that have the greatest influence on the design. In this case they are the overall frame dimension and profile, the photovoltaic panel dimension, spacing and layout, and the range of motion. These inputs are numerically fed into the design environment and generate instantaneous results, allowing for quick feedback loops with the major stakeholders (architects, structural engineering, energy engineers, and production team) involved in the project. \\
 
@@ -12,7 +12,7 @@ The environment combines the geometric modelling software Rhinoceros 3D \cite{Rh
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\columnwidth, trim= 0cm 10cm 0cm 3.5cm,clip]{Performative_Design_Ecosystem.pdf}
+\includegraphics[width=\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{ASF_PDE_InfoGraphic.pdf}
 \caption{The performative design environment is able to link four analysis methodologies for rapid design itterations}
 \label{fig:performative}
 \end{center}
@@ -29,10 +29,13 @@ The evaluation of the energetic performance of the ASF can be found in Chapter \
 \item \textbf{Solar Radiation Model:} The radiation on the PV panels and window behind the ASF is calculated using the Grasshopper - LadyBug plugin.  \cite{roudsari2013ladybug}. An example of the simulation result is shown in Figure \ref{fig:radiation}. A tighter layout of panels allows for more PV material per facade area, however it also results in more module selfshading, which reduces the overall electricity production.
 \item \textbf{PV Electricity Production:} The radiation result on the PV panels is coupled to an electrical circuit simulation of monolithically interconnected, thin-film CIGS PV modules. This model takes into account the effects of module self-shading and temperature dependence \cite{hofer2016parametric}. 
 \item \textbf{Building Energy Model:} The radiation calculated on the window surface is fed to a 5R1C single zone resistance-capacitance building model based on the ISO 13790 standard \cite{de2008iso}. This calculates the heating or cooling demand of the building. A tight layout of PV panels enables more control over the solar insolation. Tight configurations tend to perform better in hot climates, whereas sparse configurations perform better in colder climates. 
-\item \textbf{Daylighting Model:} A linear daylighting model based on the total flux methodology is used to determine the luminosity in the room \cite{szokolay1980handbook}. Sparse configurations result in more daylight distribution, which reduces the need for artificial lighting in the morning and evening hours.
+\item \textbf{Daylighting Model:} A linear daylighting model based on the total flux methodology is used to determine the luminosity in the room \cite{szokolay1980handbook}. When the luminosity falls below a threshold value of 300lx, artificial lighting is turned on. Sparse configurations result in more daylight distribution, which reduces the need for artificial lighting in the morning and evening hours.
 \item \textbf{Optimisation:} The simulation is conducted for all possible panel angle combinations for every hour of the year. By summing all the time steps, the annual energetic performance of the ASF can be evaluated. 
 \end{enumerate}
+This analysis finds the optimum balance between PV generation and daylight control to minimise heating, cooling and lighting demands where the overall objective is the minimisation of net energy.
 The source code for this methodology, with installation instructions can be downloaded from github \cite{ASFGitHub,RCGitHub}.
+
+During the design stage, this analysis is conducted for a typical day in summer, and in winter. Once a design has been selected, an annual study with hourly time steps is conducted to achieve a high resolution result.
 
 
 \begin{figure}
@@ -46,7 +49,7 @@ The source code for this methodology, with installation instructions can be down
 
 \subsection{Structural form finding and finite element analysis}
 
-The panel spacing, as discussed in Section \ref{ch:energy} can also influence the structural performance of the system, which in turn, influences the architectural image. It is therefore important to run the structural analysis in parallel to find the optimum solution. In this subsection we will first explain the structural concept, and then detail how this concept was developed with the PDE.\\
+The panel spacing, as discussed in Section \ref{ch:energy} can also influence the structural performance of the system, which in turn, influences the architectural image. It is therefore important to run the structural analysis in parallel to find the optimum solution. This subsection will first introduce the structural concept, and then detail how this concept was developed with the PDE.\\
 
 The proposed ASF is based on a vaulted cross-hatched network of stainless steel pipes as seen in Figure \ref{fig:structure}. The junctions where the pipes cross serve as the mounting points for each dynamic photovoltaic module. All utility lines are routed within the pipe network. A steel frame supports the pipe network to create a stand-alone pre fabricated component, which can be mounted directly to the building envelope. The vaulted shape further strengthens the structure against wind loads, thus allowing for thinner pipe diameters, which increases transparency. \\
 
