@@ -5,7 +5,7 @@ A control methodology of adaptive photovoltaic shading systems to maximise PV el
 \begin{itemize}
 \item \textbf{Solar Radiation Model:} The radiation on the PV panels and window behind the ASF is calculated for a single configuration of the ASF using LadyBug/Radiance for a single time step of one hour \cite{roudsari2013ladybug,ward1994radiance}.
 \item \textbf{PV Electricity Production:} The radiation result is coupled to an electrical circuit simulation of monolithically interconnected, thin-film CIGS PV modules. This model takes into account the effects of module self-shading and temperature dependence \cite{hofer2016parametric}.
-\item \textbf{Building Energy Model:} A 5R1C single zone resistance-capacitance building model based on the ISO 13790 standard computes the heating or cooling demand of the building for the particular timestep \cite{de2008iso}. We assume that the only surface in contact with the external environment is the south facing glazed surface. All other surfaces are in contact with other thermal zones and modelled as adiabatic surfaces. The climate in Zurich is defined as an oceanic climate (Cfb) by the Koeppen Index with an average July temperature of 18.4$^{\circ}$C, and January temperature of 0.2$^{\circ}$C \cite{koppenZurich}.
+\item \textbf{Building Energy Model:} A 5R1C single zone resistance-capacitance building model based on the ISO 13790 standard computes the heating or cooling demand of the building for the particular timestep \cite{de2008iso}. The only surface in contact with the external environment is the south facing glazed surface. All other surfaces are in contact with other thermal zones and modelled as adiabatic surfaces. The climate in Zurich is defined as an oceanic climate (Cfb) by the Koeppen Index with an average July temperature of 18.4$^{\circ}$C, and January temperature of 0.2$^{\circ}$C \cite{koppenZurich}.
 % \added[id=pj, remark={may delete to trim to 6 pages}]{This will be further expanded in Section \ref{ch:rc}.}
 \item \textbf{Daylighting Model:} A linear daylighting model based on the total flux methodology is used to determine the luminosity in the room \cite{szokolay1980handbook}. 
 \item \textbf{Optimisation:} The simulation is conducted for all possible panel angle combinations. The angle combination with the lowest net energy consumption is chosen for each timestep.
@@ -62,8 +62,6 @@ A control methodology of adaptive photovoltaic shading systems to maximise PV el
 % \label{fig:RC_Model}
 % \end{center}
 % \end{figure}
-
-% \added[id=pj, remark={may delete to trim to 6 pages}]{In this model, we assume that the only surface in contact with the external environment is the south facing glazed surface. All other surfaces of the room are in contact with other thermal zones of the building that we assume to hold the same room temperature. We therefore model them as adiabatic surfaces. Denoting by $T_m$, the temperature of the thermal mass in the room, the differential equation for the circuit in Figure \ref{fig:RC_Model} can be discretised as:}
 
 % \begin{equation} 
 % \label{eq:derivation}

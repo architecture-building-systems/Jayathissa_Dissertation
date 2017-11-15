@@ -1,29 +1,10 @@
 % !TEX root = B99_main.tex
 
-% To study the electricity generation and building energy consumption, a 3D geometry of the room and solar facade is built using the Rhinoceros software \cite{Rhino}, and its parametric modelling plugin Grasshopper \cite{grasshopper}. The solar facade consists of 400mm CIGS square panels that can rotate in two degrees of freedom. On the horizontal axis, the panels can move from 0$^{\circ}$ (closed) to 90$^{\circ}$ (open) position in steps of 22.5$^{\circ}$. In the vertical axis, it can move from 45$^{\circ}$ to -45$^{\circ}$ in 22.5$^{\circ}$ steps. Existing ASF systems \cite{nagy2016adaptive} have independently actuated panels and a continuous range of actuation, however for simplicity, we group all panels into one cluster that moves in unison. This leaves us with 25 possible dynamic configurations of the facade system. A corresponding workflow can be seen in Figure \ref{fig:workflow2}. 
+
 
 The proposed framework is shown schematically in Figure \ref{fig:workflow2}. In brief, it consists of five stages. First, the radiation on the PV panels and office window is calculated for a single configuration of the ASF. The radiation results on the PV panels are then used to calculate the electricity generation. The radiation results on the window are imported into a building thermal model, and a separate lighting model. Finally, an exhaustive search of all possible configurations is performed to determine the optimal configuration for maximum energetic performance. The framework along with installation guides are publicly available for download \cite{ASFGitHub,RCGitHub} . The following subsections detail these five stages.
 
-%We have developed a framework to study both the electricity energy harvest of dynamic BIPV modules, and its influence on the building system through shading. A high resolution radiation analysis is conducted in the Grasshopper/Rhino environment \cite{grasshopper} using the LadyBug plug-in \cite{roudsari2013ladybug}. The results from the radiation analysis are fed through an electrical simulation which calculates the PV production while taking into account effects of module self-shading \cite{hofer2016parametric}. The solar gains through the window are coupled to a resistance - capacitance (RC) network \cite{de2008iso} to model the building energy demand. This enables us to evaluate the energetic performance of an adaptive solar facade, in a set configuration for a single time step. 
 
-
-%An optimisation algorithm then finds the combination that will minimise the net building energy demand, i.e. the difference of building energy demand for heating, cooling, lighting against BIPV electricity generation. Transient elements of the results, such as the temperature of the room, and thermal control settings are then stored for the next time step. 
-
-
-% An optimisation algorithm then finds the combination that will minimise the net building energy demand according to Equation \ref{eq:min}, i.e. the difference of building energy demand for heating, cooling, lighting and BIPV electricity generation. Transient elements of the results, such as the temperature of the room, and thermal control settings are then stored for the next time step. 
-
-
-%Figure \ref{fig:workflow2} visualises the process flow. Each method in this process flow are expaned in the following subsections.
-
-%The following sub-sections will detail each of these methods as visualised in Figure \ref{fig:workflow2}. 
-
-% \begin{figure}
-% \begin{center}
-% \includegraphics[width=0.5\columnwidth, trim= 0cm 0cm 0cm 0cm,clip]{workflow_vertical.pdf} 
-% \caption{Simulation Workflow}
-% \label{fig:workflow2}
-% \end{center}
-% \end{figure}
 
 \begin{figure}
 \begin{center}
@@ -77,7 +58,7 @@ The radiation results are coupled using Python to an electrical circuit simulati
 
 \subsection{RC Model for Building Energy Demand}
 
-This subsection describes the formulation of a physics-based model to simulate the thermal behaviour of the building using a resistor-capacitor (RC) model. This is based on an electrical analogy corresponding to the equivalent thermal physics \cite{bacher2011identifying, sonderegger2010diagnostic, madsen1995estimation}. The model, shown in Figure \ref{fig:RC_Model}, consists of one internal thermal capacitance, and five thermal resistances. This is also known as a 5R1C model and is based on the ISO 13790 standard \cite{de2008iso}. We will briefly review it here for completeness.
+This subsection describes the formulation of a physics-based model to simulate the thermal behaviour of the building using a resistor-capacitor (RC) model. This is based on an electrical analogy corresponding to the equivalent thermal physics \cite{bacher2011identifying, sonderegger2010diagnostic, madsen1995estimation}. The model, shown in Figure \ref{fig:RC_Model}, consists of one internal thermal capacitance, and five thermal resistances. This is also known as a 5R1C model and is based on the ISO 13790 standard \cite{de2008iso}. It is briefly reviewed here for completeness.
 
 \begin{figure}
 \begin{center}
@@ -125,7 +106,7 @@ This subsection describes the formulation of a physics-based model to simulate t
 \end{figure}
 
 
-We assume that the only surface in contact with the external environment is the south facing glazed surface. All other surfaces of the room are in contact with other thermal zones of the building that we assume to hold the same room temperature. We therefore model them as adiabatic surfaces. Denoting by $T_m$, the temperature of the thermal mass in the room, the differential equation for the circuit in Figure \ref{fig:RC_Model} is given by 
+The only surface in contact with the external environment is the south facing glazed surface. All other surfaces of the room are in contact with other thermal zones of the building that are assume to hold the same room temperature. They can therefore be modelled as adiabatic surfaces. Denoting by $T_m$, the temperature of the thermal mass in the room, the differential equation for the circuit in Figure \ref{fig:RC_Model} is given by 
 
 %Equation \ref{eq:derrive} details the equation related to the circuit in Figure \ref{fig:RC_Model} where $T_m$ is the temperature of the room mass, and $C_m$ is the thermal capacitance of the room. 
 
@@ -135,7 +116,7 @@ We assume that the only surface in contact with the external environment is the 
      C_m {\frac{dT_m}{dt}} + T_m(H_{tr3}+H_{em})  = \phi_{mtot}
 \end{equation}
 
-The value $\phi_{mtot}$ represents an equivalent thermal heat flux based on the solar heat gains, internal heat gains, external air temperature and the thermal conductances of the building elements. For this analysis we ignore any variations of air convection caused by the solar facade. For more information on this model, refer to the Appendix, or the source code on GitHub \cite{RCGitHub}. \\
+The value $\phi_{mtot}$ represents an equivalent thermal heat flux based on the solar heat gains, internal heat gains, external air temperature and the thermal conductances of the building elements. For this analysis variations of air convection caused by the solar facade are ignored. For more information on this model, refer to the Appendix, or the source code on GitHub \cite{RCGitHub}. \\
 
 % \begin{equation} 
 % \label{eq:heatflow}
@@ -157,7 +138,7 @@ Equation \ref{eq:derrive} is discretised using the Crank-Nicolson method so it c
 
 where the subscripts $k$ and $k+1$ refer to the timesteps of length $\Delta t$ \cite{crank1947practical}.\\
 
-The heating or cooling demand for each time step is determined to ensure that the temperature $T_{m_{k+1}}$ is within the set thermal set points for occupant comfort. We assume that there is no restriction of the heating or cooling system. This means that the heating or cooling supply will always meet the calculated demand. The thermal demand is converted to electrical energy based on an average coefficient of performance (COP) of the heating or cooling system. 
+The heating or cooling demand for each time step is determined to ensure that the temperature $T_{m_{k+1}}$ is within the set thermal set points for occupant comfort. An unrestricted heating or cooling system is assumed. This means that the heating or cooling supply will always meet the calculated demand. The thermal demand is converted to electrical energy based on an average coefficient of performance (COP) of the heating or cooling system. 
 
 \subsection{Lighting Model}
 Lighting control is based on the average luminance of the room. The luminance that passes through the solar facade, to the window, is calculated in the radiation analysis in Section \ref{ch:rad}. Using the total flux method \cite{szokolay1980handbook}, the total luminance per floor area is calculated by 
@@ -167,11 +148,11 @@ Lighting control is based on the average luminance of the room. The luminance th
       \varphi_{flux}={\frac{E_w G M U}{A_{floor}}}
 \end{equation}
 
-where $E_w$ is the incident illuminance on the window, $G$ is the solar transmittance of the window, $M$ is the maintenance factor which takes surface dust into account, and $U$ is an empirical utilisation factor based on the room dimensions and ceiling profile. If the room luminosity is less than the set threshold for comfortable lighting, and there are occupants in the room, the lights are switched on to their maximum power. When compared against a more complex Radiance model with ambient bounces there was only a 5\% divergence in results. The total flux method was therefore chosen due to its computational speed. This method however, is only applicable for small spaces. The evaluation of a hall, or an open plan working space would require a ray tracing analysis with multiple bounces. The electrical wiring and pneumatics of the ASF are encased within a reflective double curved stainless steel pipe structure that takes 6\% of the projected area. We therefore assume that the influence of this structure is negligible. 
+where $E_w$ is the incident illuminance on the window, $G$ is the solar transmittance of the window, $M$ is the maintenance factor which takes surface dust into account, and $U$ is an empirical utilisation factor based on the room dimensions and ceiling profile. If the room luminosity is less than the set threshold for comfortable lighting, and there are occupants in the room, the lights are switched on to their maximum power. When compared against a more complex Radiance model with ambient bounces there was only a 5\% divergence in results. The total flux method was therefore chosen due to its computational speed. This method however, is only applicable for small spaces. The evaluation of a hall, or an open plan working space would require a ray tracing analysis with multiple bounces. The electrical wiring and pneumatics of the ASF are encased within a reflective double curved stainless steel pipe structure that takes 6\% of the projected area. The influence of this structure can therefore be assumed to be negligible. 
 
 \subsection{Exhaustive Search Optimisation}
 
-At each time step we find the combination that minimises the net building energy demand, i.e. the difference of building energy demand for heating, cooling, lighting against BIPV electricity generation, using an exhaustive search of all possible configurations. Transient elements of the results, such as the temperature of the room, and thermal control settings are then stored for the next time step. It is also possible to run this optimisation to minimise individual objectives, such as heating alone.
+At each time step the combination that minimises the net building energy demand, i.e. the difference of building energy demand for heating, cooling, lighting against BIPV electricity generation, is found using an exhaustive search of all possible configurations. Transient elements of the results, such as the temperature of the room, and thermal control settings are then stored for the next time step. It is also possible to run this optimisation to minimise individual objectives, such as heating alone.
 
 % \begin{figure}
 % \begin{center}
@@ -184,7 +165,7 @@ At each time step we find the combination that minimises the net building energy
 
 \subsection{Case Study}
 
-The ASF, shown in Figure \ref{fig:HoNR2}, was constructed on the House of Natural Resources at the ETH Zurich \cite{nagy2016adaptive}. We will use this system as a case study for the framework. The solar facade consists of 400mm CIGS square panels that can rotate in two degrees of freedom via a soft pneumatic actuator \cite{svetozarevic2016soro}. Each panel can be independently actuated with a continuous range of actuation. However, for simplicity, we group all the panels into one cluster that moves in unison with discrete angles. On the horizontal axis, the panels can move from 0$^{\circ}$ (closed) to 90$^{\circ}$ (open) position in steps of 15$^{\circ}$. On the vertical axis, they can move from 45$^{\circ}$ to -45$^{\circ}$ in 15$^{\circ}$ steps. This results in 49 possible dynamic configurations of the facade system.
+The ASF, shown in Figure \ref{fig:HoNR2}, was constructed on the House of Natural Resources at the ETH Zurich \cite{nagy2016adaptive}. This system is used as a case study for the framework. The solar facade consists of 400mm CIGS square panels that can rotate in two degrees of freedom via a soft pneumatic actuator \cite{svetozarevic2016soro}. Each panel can be independently actuated with a continuous range of actuation. However, for simplicity, all panels are grouped into one cluster that moves in unison with discrete angles. On the horizontal axis, the panels can move from 0$^{\circ}$ (closed) to 90$^{\circ}$ (open) position in steps of 15$^{\circ}$. On the vertical axis, they can move from 45$^{\circ}$ to -45$^{\circ}$ in 15$^{\circ}$ steps. This results in 49 possible dynamic configurations of the facade system.
 
 The studied building is a two person office which is 3.1m high, 4.9m wide, and 7m deep. Input data for the simulation is based on an energy plus weather file for the Zurich region \cite{remund1997meteonorm}. The weather data is recorded at an hourly resolution, and therefore the simulation is also run at hourly timesteps. A full set of input parameters for this case study is summarised in Table \ref{tab:AssumptionsOpp}.
 

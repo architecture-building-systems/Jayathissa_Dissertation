@@ -4,11 +4,9 @@
 Buildings are a critical element in our modern society and accommodate a variety of needs and functions. Unfortunately the energy consumed by buildings accounts for 32\% of global final energy consumption and 19\% of energy-related greenhouse gas emissions \cite{IPCC}. The existing building stock, therefore, offers a great potential for CO$_2$ mitigation of up to 50\% - 90\% using existing technologies \cite{IPCC}. Of these proposed technologies, building integrated photovoltaics (BIPV) have been recognised as a viable path to supply the energy needs of a building \cite{defaix2012technical,raugei2009life}. \\
 
 
-%Even the photovoltaic (PV) industry has identified BIPV as one of the four key factors for the future success of PV . 
-
 Developments in efficiency and costs of thin-film BIPV technologies have brought new design possibilities \cite{NREL, kushiya2014cis, kaelin2004low,jelle2012building}. Their lightweight and flexible nature allows for easier and more aesthetically pleasing integration into the building envelope. Furthermore, from a life-cycle perspective as evaluated in Chapter \ref{ch:asfLCA}, there are attractive returns on embodied energy \cite{perez2012faccade,jayathissa2016life}. One such example is the application of thin film PV on glazed surfaces to create a semi transparent BIPV system \cite{li2009energy,peng2016numerical,vats2012energy}. Such systems not only generate electricity, but also influence the thermo-optic properties of a building, which in Los Angeles can reduce the HVAC energy demand by 30\% \cite{chae2014building}. However, when used in colder climates, the reduction of solar heat gains results in a net HVAC loss \cite{chae2014building}.
 
-Dynamic building envelopes can mitigate this loss by actively controlling direct and indirect radiation into the building, while still responding to the occupant's desires \cite{loonen2013climate}. As seen in Figure \ref{fig:ASFschematic2} this mediation of solar radiation has the potential of improving daylight distribution, while simultaneously reducing heating and cooling demands \cite{nagy2016adaptive}. Using thin film solar panels as our shading element also allows for the simultaneous production of photovoltaic electricity. \\
+Dynamic building envelopes can mitigate this loss by actively controlling direct and indirect radiation into the building, while still responding to the occupant's desires \cite{loonen2013climate}. As seen in Figure \ref{fig:ASFschematic2} this mediation of solar radiation has the potential of improving daylight distribution, while simultaneously reducing heating and cooling demands \cite{nagy2016adaptive}. Using thin film solar panels as the shading element also allows for the simultaneous production of photovoltaic electricity. \\
 
 %In addition, less power is required to actuate them, thus facilitating the development of dynamic envelope elements \cite{nagy2016adaptive, rossi2012adaptive}. \\
 
@@ -25,35 +23,15 @@ Previous BIPV research analyses electricity production and building energy deman
 This chapter expands on this previous research in two parts. Firstly, by combining the two aforementioned categories to evaluate a dynamic photovoltaic shading system and its interaction with the building energy demand. Secondly, by proposing a novel adaptive control strategy where the results of the simulation are used to determine the orientation of the PV panels. We have previously modelled the energy performance of dynamic BIPV shading systems \cite{jayathissa2016PVSEC}. The methodology was sufficient to attain an understanding of how such a system functions, however it used simplifications that ignored time-dependent characteristics of the building, such as thermal capacitance. \\
 
 
-The contribution of this chapter is a simulation framework that overcomes these simplifications, in order to evaluate the energetic performance of adaptive photovoltaic envelopes with respect to PV electricity production and building energy demand. We apply the framework in this chapter in the context of the Adaptive Solar Facade (ASF) project, shown in Figure \ref{fig:HoNR2} \cite{nagy2016adaptive}. The ASF is a lightweight PV shading system composed of dynamically actuated copper indium gallium selenide (CIGS) panels. CIGS panels from Flisom were chosen due to their light-weight nature, high efficiency, and monolithic interconnection, however in principle any light-weight PV material can be used \cite{feurer2016progress}. Each panel can independently rotate in two degrees of freedom, through the use of a soft pneumatic actuator \cite{svetozarevic2016soro}. This freedom enables local variations of the facade when reacting to internal and external factors.  For more information on the technology, please refer to the publication by Nagy et al. \cite{nagy2016adaptive}.\\
-
-%CIGS panels were chosen due to their light-weight nature, efficiency, and availability of a local supplier, however in principle any light-weight PV material can be used. 
-%This chapter expands on this work by analysing dynamic PV shading systems, while also taking into account mutual shading amongst modules and its effect on PV electricity generation. This approach allows us to reduce efficiency degradation due to partial shading of PV modules \cite{hofer2016parametric}.
-%
-
-
-%Attempts to model a dynamic PV shading system was first presented at the EUPVSEC 2016 \cite{jayathissa2016PVSEC}, which provides a general understanding of dynamic BIPV systems, but uses simplifications which ignore transient characteristics of the building, such as thermal capacitance. \\
-
-% Attempts to analyse dynamic BIPV systems have still been conducted through static simulations where every possible configuration of an adaptive envelope is computed for every hour of the year, followed by a post processing algorithm which extracts the best configuration for each hour \cite{jayathissa2016PVSEC}. Although this method is good to gain a general understanding of dynamic BIPV systems, it lacks transient characteristics of the buildings behaviour, such as thermal capacitance. \\
-
-%A high-resolution radiation analysis is conducted through a parametric Rhino/Grasshopper environment \cite{grasshopper}. The results are then coupled to a resistance - capacitance (RC) model  to determine the energy consumption of the building \cite{de2008iso}. This methodology ultimately enables us to assess the performance of dynamic BIPV and investigate control strategies for future application. \\
-
-% We also include more complex physics within our radiation analysis such as the effects of mutual shading amongst modules \cite{hofer2016parametric}. 
+The contribution of this chapter is a simulation framework that overcomes these simplifications, in order to evaluate the energetic performance of adaptive photovoltaic envelopes with respect to PV electricity production and building energy demand. The framework is applied in the context of the Adaptive Solar Facade (ASF) project, shown in Figure \ref{fig:HoNR2} \cite{nagy2016adaptive}. The ASF is a lightweight PV shading system composed of dynamically actuated copper indium gallium selenide (CIGS) panels. CIGS panels from Flisom were chosen due to their light-weight nature, high efficiency, and monolithic interconnection, however in principle any light-weight PV material can be used \cite{feurer2016progress}. Each panel can independently rotate in two degrees of freedom, through the use of a soft pneumatic actuator \cite{svetozarevic2016soro}. This freedom enables local variations of the facade when reacting to internal and external factors.  For more information on the technology, please refer to the publication by Nagy et al. \cite{nagy2016adaptive}.\\
 
 
 
 
-The remainder of the chapter is organised as follows. The next section describes the simulation methodology including the case study used in the analysis. In Section \ref{ch:results2} we present the results of the case study which describes the adaptive response of the ASF to variations in the external and internal environment. Finally, Section \ref{ch:conclusion2} concludes the chapter.
+
+The remainder of the chapter is organised as follows. The next section describes the simulation methodology including the case study used in the analysis. In Section \ref{ch:results2} the results of the case study are presented which describes the adaptive response of the ASF to variations in the external and internal environment. Finally, Section \ref{ch:conclusion2} concludes the chapter.
 
 
-% This chapter expands on this work by analysing dynamic PV shading systems, while also taking into account mutual shading amongst modules and its effect on PV electricity generation. The approach allows us to reduce efficiency degradation due to partial shading of PV modules \cite{hofer2015PVSEC}.
-
- 
-
-
-% Within this study we analyse the trade-off in winter between PV generation and heating the room through solar insolation. Likewise in summer we discuss the trade-off between cooling and natural lighting. 
-
-% The state of the art in this field is restricted to static shading devices \cite{yoo2011available} \cite{mandalaki2012assessment}. This chapter presents a methodology to simulate a dynamic solar facade and calculate the electricity production in combination with the energy consumption of the building. 
 
 
 \begin{figure}

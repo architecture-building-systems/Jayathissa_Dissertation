@@ -1,6 +1,6 @@
 % !TEX root = main.tex
 
-In this section, we detail the inventory, Energy Plus simulation methodology, important assumptions, and the LCA evaluation method. The assessment considers the environmental impacts of the production, operation, and disposal of an ASF. We assume a lifetime of 20 years based on the product warranty of the PV panels. The impact assessment is performed according to the ISO 14040 and ISO 14044, and is performed in four stages: (1) Goal and Scope Definition, (2) Inventory Analysis, (3) Impact Assessment, and (4) Interpretation \cite{finkbeiner2006new}.\\
+This section details the inventory, Energy Plus simulation methodology, important assumptions, and the LCA evaluation method. The assessment considers the environmental impacts of the production, operation, and disposal of an ASF. A lifetime of 20 years is assumed based on the product warranty of the PV panels. The impact assessment is performed according to the ISO 14040 and ISO 14044, and is performed in four stages: (1) Goal and Scope Definition, (2) Inventory Analysis, (3) Impact Assessment, and (4) Interpretation \cite{finkbeiner2006new}.\\
 
 
 
@@ -11,12 +11,12 @@ In this section, we detail the inventory, Energy Plus simulation methodology, im
 
 \item[1. Goal and Scope Definition]: This chapter primarily assesses carbon emission reductions therefore the global warming potential (GWP) impact category is primarily assessed. The assessment also looks at six other major ReCiPe midpoint indicators: terrestrial acidification potential (TAP), freshwater eutrophication potential (FEP), human toxicity potential (HTP), metal depletion potential (MDP), and photochemical oxidant formation potential (POFP). These categories are most relevant to the technology and most widely used in existing literature \cite{ortiz2009sustainability}. The functional unit is the electrical power production of the system in kWh.
 
-The scope of the assessment, respectively the system boundary, is summarised in Figure 4. We analyse the manufacture, dynamic actuation, maintenance, and disposal of the solar facade. The scope comprises of a cradle-to-grave approach, where transport to and from site is taken into account. 
-In order to account for the multi-functionality aspect of the ASF (i.e. electricity production and shading benefit), we carry out a sensitivity analysis and expand the system boundary including operational energy savings through adaptive shading. As the life cycle inventory (LCI) background database we use Ecoinvent v3.1 \cite{frischknecht2005ecoinvent} with the cut-off system model \footnote{http://www.ecoinvent.org/database/system-models-in-ecoinvent-3/cut-off-system-model/allocation-cut-off-by-classification.html   -  \textit{Accessed: 8.2.2016}}. That means impacts are allocated to the primary use of the product and it receives no credit for the provision of recycled material. Once a product is disposed or recycled, it leaves the system boundary and the recycled product comes “burden-free”.
+The scope of the assessment, respectively the system boundary, is summarised in Figure 4. This includes an analysis of the manufacture, dynamic actuation, maintenance, and disposal of the solar facade. The scope comprises of a cradle-to-grave approach, where transport to and from site is taken into account. 
+In order to account for the multi-functionality aspect of the ASF (i.e. electricity production and shading benefit), a sensitivity analysis is undertaken, and the system boundary is expanded to include operational energy savings through adaptive shading. Ecoinvent v3.1 \cite{frischknecht2005ecoinvent} is used as the life cycle inventory (LCI) background database with the cut-off system model \footnote{http://www.ecoinvent.org/database/system-models-in-ecoinvent-3/cut-off-system-model/allocation-cut-off-by-classification.html   -  \textit{Accessed: 8.2.2016}}. That means impacts are allocated to the primary use of the product and it receives no credit for the provision of recycled material. Once a product is disposed or recycled, it leaves the system boundary and the recycled product comes “burden-free”.
 
 \item[2. Inventory Analysis]: The Ecoinvent v3.1 database is used as the main LCA database \cite{frischknecht2005ecoinvent}. A detailed description of the inventory is found in Section \ref{ch:meth:Embodied} and \ref{ch:Meth:Opp}.
 
-\item[3. Impact Assessment]: The assessment is based on the IPCC 2007 methodology \cite{solomon2007climate}. The GWP assessment is performed using the OpenLCA assessment tool \cite{ciroth2007ict}. In the assessment, we also compare the emission factor (EF) of an ASF with other PV systems. The emission factor is expressed as
+\item[3. Impact Assessment]: The assessment is based on the IPCC 2007 methodology \cite{solomon2007climate}. The GWP assessment is performed using the OpenLCA assessment tool \cite{ciroth2007ict}. In the assessment, the emission factor (EF) of an ASF is compared with other PV systems. The emission factor is expressed as
 
 \begin{equation}
 EF=\frac{GWP}{\mathrm{G}}   
@@ -27,7 +27,7 @@ EF=\frac{GWP}{\mathrm{G}}
 where ($G$) is the electricity production in (kWh).
 
 
-\item[4. Interpretation]: The results of the LCA analysis (not including shading effects) are compared with other facade integrated PV technologies. We then perform a system expansion to also include the effects of adaptive shading to the system. Finally a sensitivity analysis is conducted which is further described in Section \ref{ch:meth:sens}.
+\item[4. Interpretation]: The results of the LCA analysis (not including shading effects) are compared with other facade integrated PV technologies. A system expansion is performed to also include the effects of adaptive shading to the system. Finally a sensitivity analysis is conducted which is further described in Section \ref{ch:meth:sens}.
 
 
 \end{description}
@@ -81,7 +81,7 @@ Diode, glass for junction box & 0.011 ${\mathrm{kg/m^2_{facade}}}$\\
 \end{table}
 
 \item[Actuator] \hfill \\
-Traditionally photovoltaic actuation is done through the use of servo motors. Servo motors however become a limiting factor for adaptive facades due to their high upfront costs, and instability in heavy winds. Soft robotic actuators on the other hand are cheaper and more resilient to harsh environmental conditions \cite{Svetozarevic2014a}. The soft robotic actuators however are still in development and have an estimated lifetime of five years. They will therefore require three rounds of maintenance during the lifetime of the ASF. For the purpose of this assessment we will run a sensitivity analysis on the use of servo motors and soft robotic actuators. 
+Traditionally photovoltaic actuation is done through the use of servo motors. Servo motors however become a limiting factor for adaptive facades due to their high upfront costs, and instability in heavy winds. Soft robotic actuators on the other hand are cheaper and more resilient to harsh environmental conditions \cite{Svetozarevic2014a}. The soft robotic actuators however are still in development and have an estimated lifetime of five years. They will therefore require three rounds of maintenance during the lifetime of the ASF. For the purpose of this assessment a sensitivity analysis will be run on the use of servo motors and soft robotic actuators. 
 
 \begin{table}[H]
 \centering
@@ -116,7 +116,7 @@ Chromium steel fixing clamp  & 0.0284 ${\mathrm{kg/m^2_{facade}}}$\\
 \end{table}
 
 \item[Supporting Structure] \hfill \\
-The supporting structure is the connection point between the array of photovoltaic modules and the building itself. Many different designs are possible, however, we will base our analysis of an existing adaptive solar facade \cite{nagy2016adaptive}. This design consists of a steel cable-net that spans a steel supporting frame. The steel frame is then mounted on the building facade.\\
+The supporting structure is the connection point between the array of photovoltaic modules and the building itself. Many different designs are possible, however, the analysis will be based of an existing adaptive solar facade \cite{nagy2016adaptive}. This design consists of a steel cable-net that spans a steel supporting frame. The steel frame is then mounted on the building facade.\\
 
 \begin{table}[H]
 \centering
@@ -179,7 +179,7 @@ An adaptive shading system, when mounted over a glazed facade, has an impact on 
 
 The simulation was conducted on a south facing office room. The room, 7.0 meters in length, 4.9 meters wide and 3.1 meters high was modeled using Rhinoceros 3D CAD Package \cite{Rhino}. Grasshopper \cite{grasshopper} was used to model the orientation of each photovoltaic panel. The geometrical input is imported to Energy Plus \cite{energyplus} through the DIVA \cite{DIVA} interface. A single zone thermal analysis was conducted for each possible geometrical configuration of the ASF for each hour of the year. The results were then post processed in MATLAB \cite{MATLAB}.\\
 
-The simulations show a total energy saving of 25\% compared to static panels at 45$^\circ$ and 56\% compared to a case with no facade shading \cite{jayathissa2015abs}. These results are sumarised in Figure \ref{fig:operational}. This data is used to perform our previously described sensitivity analysis which also accounts for HVAC energy savings through adaptive shading. \\
+The simulations show a total energy saving of 25\% compared to static panels at 45$^\circ$ and 56\% compared to a case with no facade shading \cite{jayathissa2015abs}. These results are sumarised in Figure \ref{fig:operational}. This data is used to perform previously described sensitivity analysis which also accounts for HVAC energy savings through adaptive shading. \\
 
 
 
@@ -195,7 +195,7 @@ The simulations show a total energy saving of 25\% compared to static panels at 
 \end{figure}
 
 
-\item[Dynamic Actuation: ] The energy required for actuation is also taken into account. It takes 0.31Wh to fully open a single actuator. Based on the assumption of four full openings and closings per day per actuator, we approximate the combined energy requirement to be 489kWh in its 20 year lifetime. 
+\item[Dynamic Actuation: ] The energy required for actuation is also taken into account. It takes 0.31Wh to fully open a single actuator. Based on the assumption of four full openings and closings per day per actuator, the combined energy requirement is approximated to be 489kWh in its 20 year lifetime. 
 
 \item[Maintenance: ] Soft robotic actuators currently have a lifetime of five years, and therefore will need to be replaced three times during the 20 year lifetime of an ASF. No other maintenance efforts are considered for the assessment of 20 years.
 
@@ -242,7 +242,7 @@ Full openings and closings  & 4 per day                                      \\
 \subsection{Sensitivity Analysis}
 \label{ch:meth:sens}
 
-In order to evaluate the impact of varying parameters on the LCA, we performed a sensitivity analysis on the following assumptions
+In order to evaluate the impact of varying parameters on the LCA, a sensitivity analysis is performed on the following assumptions
 \begin{itemize}
 \item When an ASF is built over a glazed building surface, thus including the effects of adaptive shading on the building energy consumption.
 \item The location of the ASF including the effects of the GWP of the local electricity mix. Assessments will also be run in Madrid and Geneva.
