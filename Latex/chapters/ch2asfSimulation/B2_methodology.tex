@@ -44,7 +44,7 @@ A solar radiation simulation is run within the Rhino/Grasshopper environment \ci
 
 \subsection{PV Circuit Simulation}
 
-The radiation results are coupled using Python to an electrical circuit simulation of monolithically interconnected, thin-film CIGS PV modules with sub-cell level representation \cite{hofer2016parametric,python}. This model uses the standard equivalent circuit model to calculate sub-cell current-voltage curves with a single diode, one series resistor, and one shunt resistor \cite{mermoud2010}. By doing so, the electrical losses through module self shading, as described in Section \ref{ch:rad}, can be taken into account. In addition to the irradiation dependency, the PV simulation includes temperature dependency. A linear relation between PV cell operating temperature and incident solar irradiance is assumed \cite{skoplaki2009operating}. Infrared thermal imaging at different irradiance levels was used to infer the correlation factor. Electro-thermal effects and the influence of wind are neglected in the model. For more information, please refer to the publication by Hofer et al. \cite{hofer2016parametric}.
+The radiation results are coupled using Python to an electrical circuit simulation of monolithically interconnected, thin-film CIGS PV modules with sub-cell level representation \cite{hofer2016parametric,python}. This model uses the standard equivalent circuit model to calculate sub-cell current-voltage curves with a single diode, one series resistor, and one shunt resistor \cite{mermoud2010}. By doing so, the electrical losses through module self shading, as described in Section \ref{ch:rad}, can be taken into account. In addition to the irradiation dependency, the PV simulation includes temperature dependency. A linear relation between PV cell operating temperature and incident solar irradiance is assumed \cite{skoplaki2009operating}. Infra-red thermal imaging at different irradiance levels was used to infer the correlation factor. Electro-thermal effects and the influence of wind are neglected in the model. For more information, please refer to the publication by Hofer et al. \cite{hofer2016parametric}.
 
 
 \begin{figure}
@@ -136,7 +136,7 @@ Equation \ref{eq:derrive} is discretised using the Crank-Nicolson method so it c
       T_{m_{k+1}}={\frac{\phi_{mtot}+T_{m_k}\Big(\frac{C_m}{\Delta t} - 0.5(H_{tr3}+H_{em})\Big)}{\frac{C_m}{\Delta t} + 0.5(H_{tr3}+H_{em})}}
 \end{equation}
 
-where the subscripts $k$ and $k+1$ refer to the timesteps of length $\Delta t$ \cite{crank1947practical}.\\
+where the subscripts $k$ and $k+1$ refer to the time-steps of length $\Delta t$ \cite{crank1947practical}.\\
 
 The heating or cooling demand for each time step is determined to ensure that the temperature $T_{m_{k+1}}$ is within the set thermal set points for occupant comfort. An unrestricted heating or cooling system is assumed. This means that the heating or cooling supply will always meet the calculated demand. The thermal demand is converted to electrical energy based on an average coefficient of performance (COP) of the heating or cooling system. 
 
@@ -167,7 +167,7 @@ At each time step the combination that minimises the net building energy demand,
 
 The ASF, shown in Figure \ref{fig:HoNR2}, was constructed on the House of Natural Resources at the ETH Zurich \cite{nagy2016adaptive}. This system is used as a case study for the framework. The solar facade consists of 400mm CIGS square panels that can rotate in two degrees of freedom via a soft pneumatic actuator \cite{svetozarevic2016soro}. Each panel can be independently actuated with a continuous range of actuation. However, for simplicity, all panels are grouped into one cluster that moves in unison with discrete angles. On the horizontal axis, the panels can move from 0$^{\circ}$ (closed) to 90$^{\circ}$ (open) position in steps of 15$^{\circ}$. On the vertical axis, they can move from 45$^{\circ}$ to -45$^{\circ}$ in 15$^{\circ}$ steps. This results in 49 possible dynamic configurations of the facade system.
 
-The studied building is a two person office which is 3.1m high, 4.9m wide, and 7m deep. Input data for the simulation is based on an energy plus weather file for the Zurich region \cite{remund1997meteonorm}. The weather data is recorded at an hourly resolution, and therefore the simulation is also run at hourly timesteps. A full set of input parameters for this case study is summarised in Table \ref{tab:AssumptionsOpp}.
+The studied building is a two person office which is 3.1m high, 4.9m wide, and 7m deep. Input data for the simulation is based on an energy plus weather file for the Zurich region \cite{remund1997meteonorm}. The weather data is recorded at an hourly resolution, and therefore the simulation is also run at hourly time-steps. A full set of input parameters for this case study is summarised in Table \ref{tab:AssumptionsOpp}.
 
 
 
@@ -207,20 +207,7 @@ Window Orientation                   & South                                  \\
 \label{tab:AssumptionsOpp}
 \end{table*}
 
-%%%%%%%%%%%%Sensititivty Analysis
-% \subsection{Sensitivity Analysis}
-% (optional)
-% A sensitivity analysis was conducted to determine the effects of 
 
-% \begin{itemize}
-% \item The location of operation. Madrid and Singapore
-% \item The office parameters. A building with a higher infiltration (1 air change per hour) and ventilation rate (0.016 m$^3$/s/person)
-% \item The efficiency of the cooling system (COP=7)
-
-% \end{itemize}
-
-
-%%%%%%%%%%%%%%%%%%%
 
 
 
